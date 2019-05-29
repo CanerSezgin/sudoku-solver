@@ -21,15 +21,15 @@ Backtracking is an important tool for solving constraint satisfaction problems, 
     * If all digits have been tried and nothing worked, return false
 
 ### Algorithms
-* Javascript
-* Python
+* [Javascript](https://github.com/CanerSezgin/sudoku-solver/blob/master/algorithms/sudoku-solver.js)
+* [Python](https://github.com/CanerSezgin/sudoku-solver/blob/master/algorithms/sudoku-solver.py)
 
-#### Some Features
+### Some Features
 * It's Visualised and Modernised. 
 * Random Sudoku Boards are created at the beginning.
 * 3 Speed Types (Slower, Faster, Killer)
 
-#### Made With ❤ by Caner SEZGİN 
+### Made With ❤ by Caner SEZGİN 
 * Javascript 
 * Python 
 * JQuery 
