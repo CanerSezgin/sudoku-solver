@@ -1,0 +1,26 @@
+table { 
+    border-collapse: collapse; 
+    font-family: Calibri, 
+    sans-serif;
+
+}
+colgroup, tbody { 
+    border: solid medium; 
+    
+}
+td { 
+    height: 2.8em;
+    width: 2.8em;
+    border: solid thin; 
+    text-align: center; 
+    padding: 0; 
+}
+
+.initial {
+    background: #E2D5D5
+}
+
+.changed {
+    background: darkred;
+    color: #fff;
+}
