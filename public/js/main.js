@@ -11,7 +11,15 @@ var initialBoard = [
     [0,0,0,1,7,0,3,8,5],
     [8,0,1,5,2,0,0,4,0]
 ]
+var btns = {
+    startStop: $('#btn-start-stop'),
+    slower: $('#btn-slower'),
+    faster: $('#btn-faster'),
+    killer: $('#btn-killer'),
+    reset: $('#btn-reset')
+}
 $( document ).ready(function() {
+    btns.reset.hide()
     var sudokuBoard = $('#sudoku-board')
     sudokuBoard.append(
         `        
@@ -30,7 +38,8 @@ $( document ).ready(function() {
         `
     )
 
-
+    var tableWidth =  $('#sudoku-board').width()
+    $('#sudoku-board td').height(tableWidth/9)
     var rows = $('#sudoku-board tbody tr')
     rows.each(function(){
         var row = $(this).children()
@@ -40,8 +49,6 @@ $( document ).ready(function() {
         })
         fBoard.push(tds)
     })
-
-
 
     /* Initial Board Drawing */
     for (let row = 0; row < 9; row++) {
@@ -135,20 +142,89 @@ function findEmpty(board) {
 
 var result = JSON.parse(JSON.stringify(initialBoard));
 
-/* solve(result)
-console.log(result)
-console.log(steps)
+solve(result)
+$('#total-steps').text(steps.length)
 
 var i = 0;
-drawSteps = setInterval(() => {
+var running = false;
+var isDone = false;
+var speed = 1000;
+
+function drawSteps () {
+    $('#step').text(i+1)
     var step = steps[i]
     var p_step = steps[i-1]
     drawNumber(step[0], step[1], step[2])
     addClass(step[0], step[1], 'changed')
     if(p_step)
         removeClass(p_step[0], p_step[1], 'changed')
-    console.log(step, i)
     i++;
-    if(i == steps.length) clearInterval(drawSteps)
-}, 200);
- */
+    checkStatus()
+    if(isDone) {
+        clearInterval(drawer)
+        btns.startStop.hide()
+        btns.reset.show()
+    }
+}
+
+start = speed => {
+    if(!isDone && !running){
+        drawer = setInterval(drawSteps, speed)
+        running = true;
+    }
+}
+
+stop = () => {
+    if(!isDone && running){
+        clearInterval(drawer)
+        running = false;
+    }
+}
+checkStatus = () => isDone = (i == steps.length) ? true : false
+
+
+btns.startStop.on('click', function() {
+    var currentBtn = $(this).text().toLowerCase()
+    switch (currentBtn) {
+        case 'start':
+            $(this).text('Stop')
+            start(speed)
+            btns.slower.prop( "disabled", true )
+            btns.faster.prop( "disabled", true )
+            btns.killer.prop( "disabled", true )
+            break;
+
+        case 'stop':
+            $(this).text('Start')
+            stop()
+            btns.slower.prop( "disabled", false )
+            btns.faster.prop( "disabled", false )
+            btns.killer.prop( "disabled", false )
+            break;
+    }
+});
+
+btns.slower.click(function(){
+    speed = 1000
+    $(this).removeClass('btn-outline-success').addClass('btn-success')
+    btns.faster.removeClass('btn-danger').addClass('btn-outline-danger')
+    btns.killer.removeClass('btn-secondary').addClass('btn-outline-secondary')
+})
+
+btns.faster.click(function(){
+    speed = 200
+    $(this).removeClass('btn-outline-danger ').addClass('btn-danger')
+    btns.slower.removeClass('btn-success').addClass('btn-outline-success')
+    btns.killer.removeClass('btn-secondary').addClass('btn-outline-secondary')
+})
+
+btns.killer.click(function(){
+    speed = 10
+    $(this).removeClass('btn-outline-secondary ').addClass('btn-secondary')
+    btns.slower.removeClass('btn-success').addClass('btn-outline-success')
+    btns.faster.removeClass('btn-danger').addClass('btn-outline-danger')
+})
+
+btns.reset.click(function(){
+    location.reload();
+})

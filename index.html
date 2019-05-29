@@ -4,20 +4,121 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="public/css/bootstrap.min.css">
     <link rel="stylesheet" href="public/css/styles.css">
     <title>Sudoku Solver - Backtracking Algorithm</title>
-
 </head>
 <body>
-    <div>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Est perspiciatis velit rerum. Iusto assumenda, quam deserunt maiores tempora omnis eveniet repellendus repudiandae commodi necessitatibus, ab sed illum. Consequatur, commodi accusantium.
-    <table id="sudoku-board">
-        <colgroup><col><col><col>
-        <colgroup><col><col><col>
-        <colgroup><col><col><col>
-      </table>
+
+    <div class="main">
+            <div class="container">
+                    <div class="navbar">
+                            <div>
+                    
+                                    <h2>Sudoku Solver <span class="d-none d-sm-inline">Visualisation</span></h2>
+                                    <h5>Backtracking Algorithm</h5>
+                            </div>
+                    
+                            <div class="col-md-4 d-none d-md-block">
+                                    <a href="http://bit.ly/CanerSezgin" target="_blank"><img src="public/assets/twitter.jpg" alt="Follow Me on Twitter" id = "icon_twitter"></a>
+                                    <a href="https://github.com/CanerSezgin" target="_blank"><img src="public/assets/github.png" alt="Follow Me on GitHub" id = "icon_github"></a> 
+                            </div>
+                            <div class="col-lg-4 d-block d-md-none mobile-social">
+                                
+                    
+                                <h6>Follow Me On:</h6>
+                                <div class="mobile-social-links">
+                                        <a href="http://bit.ly/CanerSezgin" target="_blank">Twitter</a>
+                                        <a href="https://github.com/CanerSezgin" target="_blank">Github</a> 
+                                </div>
+                             
+                            
+                            </div>
+                        </div>
+                <div class="row">
+                    <div class="col-md-6 pr-5 mb-4">
+                        <table id="sudoku-board">
+                            <colgroup><col><col><col>
+                            <colgroup><col><col><col>
+                            <colgroup><col><col><col>
+                        </table>
+                        
+                        <div class="controls row">
+                            <div class="col">
+                                <button id="btn-start-stop" type="button" class="btn btn-info btn-block btn-lg">Start</button>
+                                <button id="btn-reset" type="button" class="btn btn-info btn-block btn-lg">Reset</button>
+                                <div class="row mt-1">
+                                  
+                                   <div class="col">
+                                        <button id="btn-slower" type="button" class="btn btn-success ml-1" > Slower</button>
+                                        <button id="btn-faster" type="button" class="btn btn-outline-danger ml-1">Faster</button>
+                                        <button id="btn-killer" type="button" class="btn btn-outline-secondary ml-1">Killer</button>
+                                    </div>
+                                
+                                </div>
+                                <div class="row mt-1">
+                                    <div class="col">
+                                            <!--  -->
+                                        </div>
+                                </div>
+
+                            </div>
+                            <div class="col py-2" >
+                                <h5 class="col text-right">Steps</h5>
+                                <h2 class="col text-right"><span id="step">0</span> / <span id="total-steps"></span></h2>
+                            </div>
+                        </div>
+                
+                    </div>
+                    <div class="col-md-6 pl-3 right-side">
+                        <h3>Backtracking</h3>
+                        <p>Backtracking is an important tool for solving constraint satisfaction problems, such as <span class="highlight"> crosswords, verbal arithmetic, Sudoku, </span> and many other puzzles. It is often the most convenient (if not the most efficient) technique for parsing, for the knapsack problem and other combinatorial optimization problems. [src: <a href="https://en.wikipedia.org/wiki/Backtracking" target="_blank">Wikipedia</a> ] </p>
+                        
+                        <h3>Flow</h3>
+                        <ul class="flow">
+                            <li>Find position (row, col) of an unassigned cell</li>
+                            <li>If there is none, return true (ends)</li>
+                            <li>
+                                <ul>
+                                    For digits from 1 to 9
+                                    <li>If there is no conflict for digit at row, col
+                                        <ul>
+                                            <li>assign digit to row, col and recursively try fill in rest of grid</li>
+                                        </ul>
+                                    </li>
+                                    <li>If recursion successful, return true</li>
+                                    <li>Else, remove digit and try another
+                                        <ul>
+                                            <li>If all digits have been tried and nothing worked, return false</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <h3>Algorithms</h3>
+                        <div class="algorithms">
+                            <a href="https://github.com/CanerSezgin/sudoku-solver/blob/master/algorithms/sudoku-solver.js" target="_blank">Javascript</a>
+                            <a href="https://github.com/CanerSezgin/sudoku-solver/blob/master/algorithms/sudoku-solver.py" target="_blank">Python</a>
+                        </div>
+                        
+   
+                    </div>
+                </div>
+        
+            </div>
+        
+            <div class="footer-wrap">
+                <footer>
+                    <a class="nav-link" href="https://github.com/CanerSezgin" target="_blank">© Created by Caner SEZGIN</a>
+                </footer>
+            </div>
     </div>
+
+
+
     <script src="public/js/jquery-3.4.1.min.js"></script>
+    <script src="public/js/bootstrap.min.js"></script>
     <script src="public/js/main.js"></script>
 </body>
 </html>
