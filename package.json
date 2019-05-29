@@ -1,0 +1,20 @@
+{
+  "name": "sudoku-solver",
+  "version": "1.0.0",
+  "description": "Sudoku Backtracking Algorithm with Python and Javascript, Also it contains visualization of the algorithm",
+  "main": "algorithm.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [
+    "sudoku",
+    "backtracking",
+    "sudoku-solver",
+    "js-sudoku-solver",
+    "python-sudoku-solver",
+    "sudoku-backtracking",
+    "algorithms"
+  ],
+  "author": "Caner Sezgin <ccanersezgin@gmail.com>",
+  "license": "ISC"
+}
